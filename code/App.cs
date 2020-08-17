@@ -43,7 +43,6 @@ namespace Roulette
             Bet.SixNumbers(randomBin);
             Bet.Split(randomBin);
             Bet.Corner(randomBin);
-
         }
 
         private int RandomBallDrop(List<Bin> bins)
@@ -61,7 +60,7 @@ namespace Roulette
                 else
                 {
                     finsihed = true;
-                    Console.SetCursorPosition(0, 12);
+                    Console.SetCursorPosition(0, 8);
                     return tempRand;
                 }
                 delay = delay + 75;
@@ -93,7 +92,7 @@ namespace Roulette
                 i++;
             }
             Thread.Sleep(delay);
-            Console.SetCursorPosition(0, 12);
+            Console.SetCursorPosition(0, 8);
             return tempRand;
         }
 
@@ -111,7 +110,7 @@ namespace Roulette
                 Console.Write(bin.number);
                 Console.ResetColor();
             }
-            Console.SetCursorPosition(0, 12);
+            Console.SetCursorPosition(0, 8);
             Console.WriteLine("Fancy Board Print");
         }
 
