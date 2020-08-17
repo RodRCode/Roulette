@@ -6,52 +6,108 @@ namespace Roulette
     {
         internal static void Numbers(int randomBin)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"You win if you bet on: {randomBin}");
         }
 
         internal static void EvenOdd(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void RedBlack(Bin chosenBin)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"You win if you bet on: {chosenBin.color}");
         }
 
         internal static void LowHigh(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void Dozens(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void Columns(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void Street(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void SixNumbers(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void Split(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         internal static void Corner(int randomBin)
         {
-            throw new NotImplementedException();
+            if (randomBin == 0 || randomBin == 37)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

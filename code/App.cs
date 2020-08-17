@@ -31,7 +31,8 @@ namespace Roulette
             randomBin = RandomBallDrop(bins);
             chosenBin = bins[randomBin];
             Console.WriteLine($"The number chosen was {randomBin}");
-            Console.WriteLine($"The info on it is: {chosenBin.color} {chosenBin.number}");
+            Console.WriteLine("The winning bets were:");
+
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
