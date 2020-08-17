@@ -33,6 +33,17 @@ namespace Roulette
             Console.WriteLine($"The number chosen was {randomBin}");
             Console.WriteLine($"The info on it is: {chosenBin.color} {chosenBin.number}");
 
+            Bet.Numbers(randomBin);
+            Bet.EvenOdd(randomBin);
+            Bet.RedBlack(chosenBin);
+            Bet.LowHigh(randomBin);
+            Bet.Dozens(randomBin);
+            Bet.Columns(randomBin);
+            Bet.Street(randomBin);
+            Bet.SixNumbers(randomBin);
+            Bet.Split(randomBin);
+            Bet.Corner(randomBin);
+
         }
 
         private int RandomBallDrop(List<Bin> bins)
