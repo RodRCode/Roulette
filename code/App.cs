@@ -39,7 +39,7 @@ namespace Roulette
             int tempRand = 0;
             do
             {
-                //     Console.Beep();
+                //Console.Beep();
                 if (delay < 851)
                 {
                     tempRand = RandFancyBinPrint(bins, delay);
@@ -69,7 +69,10 @@ namespace Roulette
                 if (bin.color == "Green")
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
                 if (i == tempRand)
-                    Console.BackgroundColor = ConsoleColor.Cyan;
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
                 Console.SetCursorPosition(bin.x * 4, bin.y * 2);
                 Console.Write(bin.number);
                 Console.ResetColor();

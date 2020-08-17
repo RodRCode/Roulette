@@ -21,8 +21,8 @@ namespace Roulette
         {
             List<Bin> Bins = new List<Bin>();
 
-            var zero = new Bin("Green", " 0", 1, 1);
-            var doubleZero = new Bin("Green", "00", 1, 2);
+            var zero = new Bin("Green", " 0", 1, 2);
+            var doubleZero = new Bin("Green", "00", 1, 1);
 
             var b1 = new Bin("Black", " 1", 2, 3);
             var b2 = new Bin("Black", " 2", 2, 2);
