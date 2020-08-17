@@ -26,9 +26,12 @@ namespace Roulette
 
             List<Bin> bins = Bin.GenerateBins();
             int randomBin = 0;
+            Bin chosenBin = new Bin();
 
             randomBin = RandomBallDrop(bins);
+            chosenBin = bins[randomBin];
             Console.WriteLine($"The number chosen was {randomBin}");
+            Console.WriteLine($"The info on it is: {chosenBin.color} {chosenBin.number}");
 
         }
 
