@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Roulette
 {
@@ -10,9 +12,6 @@ namespace Roulette
 
         internal void Run()
         {
-            //generate random numbers from 0 to 37.  0 is going to be "0" on the wheel, 37 is going to be "00" on the wheel
-            //assign 18 of the numbers to a color with the other 18 being the other color
-            //stretch goal generate an onscreen display that has the numbers spinning around with a beep, would be extra cool if the number picked was actually the one that it choose at the end of the final beep.  The beeps should slow down as it gets closer to finishing the drop.
             //Implement the different bets
             //1. the number of the bin
             //2. Evens/Odds
@@ -23,7 +22,96 @@ namespace Roulette
             //7. Streets: rows 1/2/3 or 22/23/24
             //8. 6 Numbers: Double rows 1/2/3/4/5/6 or 22/23/24/25/26/27
             //9. Split the edge of any two contiguoius numbers 1/2, 11/14, 35/36
-            //10. Corners: 1/2/4/5 or 23/24/26/27 
+            //10. Corners: 1/2/4/5 or 23/24/26/27
+
+            List<Bin> bins = Bin.GenerateBins();
+            int randomBin = 0;
+
+            randomBin = RandomBallDrop(bins);
+            Console.WriteLine($"The number chosen was {randomBin}");
+
+        }
+
+        private int RandomBallDrop(List<Bin> bins)
+        {
+            int delay = 0;
+            bool finsihed = false;
+            int tempRand = 0;
+            do
+            {
+                //     Console.Beep();
+                if (delay < 851)
+                {
+                    tempRand = RandFancyBinPrint(bins, delay);
+                }
+                else
+                {
+                    finsihed = true;
+                    Console.SetCursorPosition(0, 12);
+                    return tempRand;
+                }
+                delay = delay + 75;
+            } while (!finsihed);
+            return tempRand;
+        }
+
+        private int RandFancyBinPrint(List<Bin> bins, int delay)
+        {
+            Random rand = new Random();
+            int tempRand = rand.Next(37);
+            int i = 0;
+            foreach (var bin in bins)
+            {
+                if (bin.color == "Black")
+                    Console.BackgroundColor = ConsoleColor.Black;
+                if (bin.color == "Red")
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                if (bin.color == "Green")
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                if (i == tempRand)
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+                Console.Write(bin.number);
+                Console.ResetColor();
+                i++;
+            }
+            Thread.Sleep(delay);
+            Console.SetCursorPosition(0, 12);
+            return tempRand;
+        }
+
+        private void FancyBinPrint(List<Bin> bins)
+        {
+            foreach (var bin in bins)
+            {
+                if (bin.color == "Black")
+                    Console.BackgroundColor = ConsoleColor.Black;
+                if (bin.color == "Red")
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                if (bin.color == "Green")
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+                Console.Write(bin.number);
+                Console.ResetColor();
+            }
+            Console.SetCursorPosition(0, 12);
+            Console.WriteLine("Fancy Board Print");
+        }
+
+        private static void PrintBins(List<Bin> bins)
+        {
+            foreach (var bin in bins)
+            {
+                if (bin.color == "Black")
+                    Console.BackgroundColor = ConsoleColor.Black;
+                if (bin.color == "Red")
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                if (bin.color == "Green")
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                Console.Write($"Bin {bin.number} is the color {bin.color}");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
         }
     }
 }
