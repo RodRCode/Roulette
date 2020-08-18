@@ -19,11 +19,11 @@ namespace Roulette
             {
                 if ((randomBin % 2) == 0)
                 {
-                    Console.WriteLine("You won if you bet on Even");
+                    Console.WriteLine("You won if you bet on: Even");
                 }
                 else
                 {
-                    Console.WriteLine("You won if you bet on Odd");
+                    Console.WriteLine("You won if you bet on: Odd");
                 }
             }
         }
@@ -48,7 +48,15 @@ namespace Roulette
             }
             else
             {
+                if (randomBin <19)
+                {
+                    Console.WriteLine("You win if you bet on: Low");
+                }
+                else
+                {
+                    Console.WriteLine("You win if you bet on: High");
 
+                }
             }
         }
 
