@@ -32,8 +32,8 @@ namespace Roulette
             chosenBin = bins[randomBin];
             Console.WriteLine("The winning bets were:");
 
- //           FancyBinPrint(bins);
- //           randomBin = 35;
+            //           FancyBinPrint(bins);
+            //           randomBin = 35;
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
@@ -49,23 +49,25 @@ namespace Roulette
 
         private int RandomBallDrop(List<Bin> bins)
         {
-            int delay = 0;
+            int delay = 1;
             bool finsihed = false;
             int tempRand = 0;
             do
             {
-                Console.Beep();
-                if (delay < 1099)
+                if (delay < 1000)
                 {
                     tempRand = RandFancyBinPrint(bins, delay);
+                    Console.Beep(300, delay);
+                    delay = delay + 75;
                 }
                 else
                 {
+                    tempRand = RandFancyBinPrint(bins, delay);
                     finsihed = true;
                     Console.SetCursorPosition(0, 8);
+                    Console.Beep();
                     return tempRand;
                 }
-                delay = delay + 100;
             } while (!finsihed);
             return tempRand;
         }
@@ -73,7 +75,7 @@ namespace Roulette
         private int RandFancyBinPrint(List<Bin> bins, int delay)
         {
             Random rand = new Random();
-            int tempRand = rand.Next(37);
+            int tempRand = rand.Next(38);
             int i = 0;
             foreach (var bin in bins)
             {
@@ -93,7 +95,7 @@ namespace Roulette
                 Console.ResetColor();
                 i++;
             }
-            Thread.Sleep(delay);
+            //Thread.Sleep(delay);
             Console.SetCursorPosition(0, 8);
             return tempRand;
         }
