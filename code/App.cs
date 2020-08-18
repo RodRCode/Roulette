@@ -36,7 +36,7 @@ namespace Roulette
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
-            Bet.RedBlack(chosenBin);
+            Bet.RedBlack(chosenBin, randomBin);
             Bet.LowHigh(randomBin);
             Bet.Dozens(randomBin);
             Bet.Columns(randomBin);
