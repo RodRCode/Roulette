@@ -225,10 +225,10 @@ namespace Roulette
             {
                 int street = (randomBin - 1) / 3;
                 int column = (randomBin % 3);
-                string nw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin+ " ";
-                string ne = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
-                string sw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
-                string se = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
+                string nw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + "/" + (randomBin - 3) + "/" + randomBin + " ";
+                string ne = (randomBin + 1) + "/" + (randomBin + 1 + 3) + "/" + randomBin + "/" + (randomBin + 3) + " ";
+                string sw = (randomBin - 3) + "/" + randomBin + "/" + (randomBin - 3 - 1) + "/" + (randomBin - 1) + " ";
+                string se = randomBin + "/" + (randomBin + 3) + "/" + (randomBin - 1) + "/" + (randomBin - 1 + 3) + " ";
 
                 switch (street)
                 {

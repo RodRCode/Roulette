@@ -33,7 +33,7 @@ namespace Roulette
             Console.WriteLine("The winning bets were:");
 
  //           FancyBinPrint(bins);
- //           randomBin = 23;
+ //           randomBin = 35;
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
