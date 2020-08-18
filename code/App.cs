@@ -55,7 +55,7 @@ namespace Roulette
             do
             {
                 Console.Beep();
-                if (delay < 851)
+                if (delay < 1099)
                 {
                     tempRand = RandFancyBinPrint(bins, delay);
                 }
@@ -65,7 +65,7 @@ namespace Roulette
                     Console.SetCursorPosition(0, 8);
                     return tempRand;
                 }
-                delay = delay + 75;
+                delay = delay + 100;
             } while (!finsihed);
             return tempRand;
         }
