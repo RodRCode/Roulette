@@ -28,12 +28,12 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
- //           randomBin = RandomBallDrop(bins);
+            randomBin = RandomBallDrop(bins);
             chosenBin = bins[randomBin];
             Console.WriteLine("The winning bets were:");
 
-            FancyBinPrint(bins);
-            randomBin = 34;
+ //           FancyBinPrint(bins);
+ //           randomBin = 23;
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
@@ -54,7 +54,7 @@ namespace Roulette
             int tempRand = 0;
             do
             {
-                //Console.Beep();
+                Console.Beep();
                 if (delay < 851)
                 {
                     tempRand = RandFancyBinPrint(bins, delay);
