@@ -223,6 +223,41 @@ namespace Roulette
             }
             else
             {
+                int street = (randomBin - 1) / 3;
+                int column = (randomBin % 3);
+                string nw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin+ " ";
+                string ne = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
+                string sw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
+                string se = (randomBin + 1 - 3) + "/" + (randomBin + 1) + (randomBin - 3) + "/" + randomBin + " ";
+
+                switch (street)
+                {
+                    case 0:
+                        nw = "";
+                        sw = "";
+                        break;
+                    case 11:
+                        ne = "";
+                        se = "";
+                        break;
+                    default:
+                        break;
+                }
+                switch (column)
+                {
+                    case 0:
+                        nw = "";
+                        ne = "";
+                        break;
+                    case 1:
+                        sw = "";
+                        se = "";
+                        break;
+                    default:
+                        break;
+                }
+
+                Console.WriteLine($"You win if you bet on: {nw}{ne}{sw}{se}");
 
                 /*               randomBin % 3
                                    case 0:(3/6/9/12/15/18/21/24/27/30/33/36)");
