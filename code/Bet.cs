@@ -6,7 +6,14 @@ namespace Roulette
     {
         internal static void Numbers(int randomBin)
         {
-            Console.WriteLine($"You win if you bet on: {randomBin}");
+            if (randomBin == 37)
+            {
+                Console.WriteLine("You win if you bet on: 00");
+            }
+            else
+            {
+                Console.WriteLine($"You win if you bet on: {randomBin}");
+            }
         }
 
         internal static void EvenOdd(int randomBin)
@@ -36,7 +43,7 @@ namespace Roulette
             }
             else
             {
-            Console.WriteLine($"You win if you bet on: {chosenBin.color}");
+                Console.WriteLine($"You win if you bet on: {chosenBin.color}");
             }
         }
 
@@ -48,7 +55,7 @@ namespace Roulette
             }
             else
             {
-                if (randomBin <19)
+                if (randomBin < 19)
                 {
                     Console.WriteLine("You win if you bet on: Low");
                 }
@@ -68,7 +75,7 @@ namespace Roulette
             }
             else
             {
-                if(randomBin<= 12)
+                if (randomBin <= 12)
                 {
                     Console.WriteLine("You win if you bet on: 1-12");
                 }
@@ -116,7 +123,11 @@ namespace Roulette
             }
             else
             {
-
+                int tempInt = (randomBin - 1) / 3;
+                int temp1 = (tempInt * 3) + 1;
+                int temp2 = (tempInt * 3) + 2;
+                int temp3 = (tempInt * 3) + 3;
+                Console.WriteLine($"You win if you bet on {temp1}/{temp2}/{temp3}");
             }
         }
 

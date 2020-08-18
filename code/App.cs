@@ -28,9 +28,12 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
-            randomBin = RandomBallDrop(bins);
+ //           randomBin = RandomBallDrop(bins);
             chosenBin = bins[randomBin];
             Console.WriteLine("The winning bets were:");
+
+            FancyBinPrint(bins);
+            randomBin = 4;
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
