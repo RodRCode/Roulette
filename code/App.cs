@@ -49,20 +49,20 @@ namespace Roulette
 
         private int RandomBallDrop(List<Bin> bins)
         {
-            int delay = 1;
+            int beepLength = 1;
             bool finsihed = false;
             int tempRand = 0;
             do
             {
-                if (delay < 1000)
+                if (beepLength < 1000)
                 {
-                    tempRand = RandFancyBinPrint(bins, delay);
-                    Console.Beep(300, delay);
-                    delay = delay + 75;
+                    tempRand = RandFancyBinPrint(bins, beepLength);
+                    Console.Beep(300, beepLength);
+                    beepLength = beepLength + 75;
                 }
                 else
                 {
-                    tempRand = RandFancyBinPrint(bins, delay);
+                    tempRand = RandFancyBinPrint(bins, beepLength);
                     finsihed = true;
                     Console.SetCursorPosition(0, 8);
                     Console.Beep();
@@ -72,7 +72,7 @@ namespace Roulette
             return tempRand;
         }
 
-        private int RandFancyBinPrint(List<Bin> bins, int delay)
+        private int RandFancyBinPrint(List<Bin> bins, int beepLength)
         {
             Random rand = new Random();
             int tempRand = rand.Next(38);
@@ -95,7 +95,6 @@ namespace Roulette
                 Console.ResetColor();
                 i++;
             }
-            //Thread.Sleep(delay);
             Console.SetCursorPosition(0, 8);
             return tempRand;
         }
