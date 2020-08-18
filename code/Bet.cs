@@ -68,7 +68,18 @@ namespace Roulette
             }
             else
             {
-
+                if(randomBin<= 12)
+                {
+                    Console.WriteLine("You win if you bet on: 1-12");
+                }
+                else if (randomBin >= 25)
+                {
+                    Console.WriteLine("You win if you bet on: 25-36");
+                }
+                else
+                {
+                    Console.WriteLine("You win if you bet on: 13-24");
+                }
             }
         }
 
@@ -80,7 +91,20 @@ namespace Roulette
             }
             else
             {
-
+                switch (randomBin % 3)
+                {
+                    case 0:
+                        Console.WriteLine("You win if you bet on column 1 (3/6/9/12/15/18/21/24/27/30/33/36)");
+                        break;
+                    case 1:
+                        Console.WriteLine("You win if you bet on column 3 (1/4/7/10/13/16/19/22/25/28/31/34)");
+                        break;
+                    case 2:
+                        Console.WriteLine("You win if you bet on column 2 (2/5/8/11/14/17/20/23/26/29/32/35)");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

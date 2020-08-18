@@ -30,9 +30,7 @@ namespace Roulette
 
             randomBin = RandomBallDrop(bins);
             chosenBin = bins[randomBin];
-            Console.WriteLine($"The number chosen was {randomBin}");
             Console.WriteLine("The winning bets were:");
-
 
             Bet.Numbers(randomBin);
             Bet.EvenOdd(randomBin);
