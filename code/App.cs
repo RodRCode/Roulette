@@ -49,7 +49,7 @@ namespace Roulette
 
         private int RandomBallDrop(List<Bin> bins)
         {
-            int beepLength = 1;
+            int beepLength = 50;
             bool finsihed = false;
             int tempRand = 0;
             do
@@ -58,7 +58,7 @@ namespace Roulette
                 {
                     tempRand = RandFancyBinPrint(bins, beepLength);
                     Console.Beep(300, beepLength);
-                    beepLength = beepLength + 75;
+                    beepLength = (int)(beepLength *1.1);
                 }
                 else
                 {
