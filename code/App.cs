@@ -45,8 +45,8 @@ namespace Roulette
             Bet.Columns(randomBin, numberOfBins, numberOfColumns);
             Bet.Street(randomBin, numberOfBins, numberOfColumns);
             Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
-            Bet.Split(randomBin, numberOfBins);
-            Bet.Corner(randomBin, numberOfBins);
+            Bet.Split(randomBin, numberOfBins, numberOfColumns);
+            Bet.Corner(randomBin, numberOfBins, numberOfColumns);
         }
 
         private int RandomBallDrop(List<Bin> bins, int numberOfBins)

@@ -173,7 +173,7 @@ namespace Roulette
             }
         }
 
-        internal static void Split(int randomBin, int numberOfBins)
+        internal static void Split(int randomBin, int numberOfBins, int numberOfColumns)
         {
             if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
@@ -181,12 +181,12 @@ namespace Roulette
             }
             else
             {
-                int street = (randomBin - 1) / 3;
-                int column = (randomBin % 3);
+                int street = (randomBin - 1) / numberOfColumns;
+                int column = (randomBin % numberOfColumns);
                 string n = randomBin + "/" + (randomBin + 1) + " ";
                 string s = randomBin + "/" + (randomBin - 1) + " ";
-                string e = randomBin + "/" + (randomBin + 3);
-                string w = (randomBin - 3) + "/" + randomBin + " ";
+                string e = randomBin + "/" + (randomBin + numberOfColumns);
+                string w = (randomBin - numberOfColumns) + "/" + randomBin + " ";
 
                 switch (street)
                 {
@@ -215,7 +215,7 @@ namespace Roulette
             }
         }
 
-        internal static void Corner(int randomBin, int numberOfBins)
+        internal static void Corner(int randomBin, int numberOfBins, int numberOfColumns)
         {
             if (randomBin == 0 || randomBin == numberOfBins +1)
             {
@@ -223,12 +223,12 @@ namespace Roulette
             }
             else
             {
-                int street = (randomBin - 1) / 3;
-                int column = (randomBin % 3);
-                string nw = (randomBin + 1 - 3) + "/" + (randomBin + 1) + "/" + (randomBin - 3) + "/" + randomBin + " ";
-                string ne = (randomBin + 1) + "/" + (randomBin + 1 + 3) + "/" + randomBin + "/" + (randomBin + 3) + " ";
-                string sw = (randomBin - 3) + "/" + randomBin + "/" + (randomBin - 3 - 1) + "/" + (randomBin - 1) + " ";
-                string se = randomBin + "/" + (randomBin + 3) + "/" + (randomBin - 1) + "/" + (randomBin - 1 + 3) + " ";
+                int street = (randomBin - 1) / numberOfColumns;
+                int column = (randomBin % numberOfColumns);
+                string nw = (randomBin + 1 - numberOfColumns) + "/" + (randomBin + 1) + "/" + (randomBin - numberOfColumns) + "/" + randomBin + " ";
+                string ne = (randomBin + 1) + "/" + (randomBin + 1 + numberOfColumns) + "/" + randomBin + "/" + (randomBin + numberOfColumns) + " ";
+                string sw = (randomBin - numberOfColumns) + "/" + randomBin + "/" + (randomBin - numberOfColumns - 1) + "/" + (randomBin - 1) + " ";
+                string se = randomBin + "/" + (randomBin + numberOfColumns) + "/" + (randomBin - 1) + "/" + (randomBin - 1 + numberOfColumns) + " ";
 
                 switch (street)
                 {
