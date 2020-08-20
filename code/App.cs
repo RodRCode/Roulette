@@ -26,6 +26,10 @@ namespace Roulette
             int numberOfBins = 36;
             int numberOfColumns = 3;
 
+            IntroAndOptions(ref numberOfBins, ref numberOfColumns);
+
+            Console.Clear();
+
             List<Bin> bins = Bin.GenerateBins(numberOfBins, numberOfColumns);
             int randomBin = 0;
             Bin chosenBin = new Bin();
@@ -33,7 +37,7 @@ namespace Roulette
             randomBin = RandomBallDrop(bins, numberOfBins, numberOfColumns);
             chosenBin = bins[randomBin];
 
-            Console.SetCursorPosition(0, (numberOfColumns *2) + 2);
+            Console.SetCursorPosition(0, (numberOfColumns * 2) + 2);
             Console.WriteLine("The winning bets were:");
 
             //           FancyBinPrint(bins);
@@ -49,6 +53,31 @@ namespace Roulette
             Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
             Bet.Split(randomBin, numberOfBins, numberOfColumns);
             Bet.Corner(randomBin, numberOfBins, numberOfColumns);
+        }
+
+        private static void IntroAndOptions(ref int numberOfBins, ref int numberOfColumns)
+        {
+            Console.WriteLine("The standard Roulette table has 36 numbers in 3 columns.");
+            Console.Write("If you want to enter your own wacky values, enter \"y\" if not hit anything else: ");
+            var answer = Console.ReadKey();
+            string answerString = answer.KeyChar.ToString();
+            if (answerString == "y")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("\n\nYou are going to get some WACKY results because the bets have not been fully set up for this (yet)");
+                Console.WriteLine("If you put in more than 420 bins and/or more than 15 columns you are going to probably break things");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("But, that's ok, you do you.");
+                Console.ResetColor();
+                Console.Write("\n\nEnter how many numbers you want on the Roulette Table then hit enter: ");
+                answerString = Console.ReadLine();
+                numberOfBins = int.Parse(answerString);
+                Console.Write("\nEnter how many columns you want: ");
+                answerString = Console.ReadLine();
+                numberOfColumns = int.Parse(answerString);
+            }
         }
 
         private int RandomBallDrop(List<Bin> bins, int numberOfBins, int numberOfColumns)
