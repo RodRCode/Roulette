@@ -30,7 +30,7 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
-            randomBin = RandomBallDrop(bins);
+            randomBin = RandomBallDrop(bins, numberOfBins);
             chosenBin = bins[randomBin];
             Console.WriteLine("The winning bets were:");
 
@@ -49,7 +49,7 @@ namespace Roulette
             Bet.Corner(randomBin);
         }
 
-        private int RandomBallDrop(List<Bin> bins)
+        private int RandomBallDrop(List<Bin> bins, int numberOfBins)
         {
             int beepLength = 50;
             bool finsihed = false;
@@ -58,13 +58,13 @@ namespace Roulette
             {
                 if (beepLength < 1000)
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength);
+                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins);
                     Console.Beep(300, beepLength);
                     beepLength = (int)(beepLength *1.1);
                 }
                 else
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength);
+                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins);
                     finsihed = true;
                     Console.SetCursorPosition(0, 8);
                     Console.Beep();
@@ -74,10 +74,10 @@ namespace Roulette
             return tempRand;
         }
 
-        private int RandFancyBinPrint(List<Bin> bins, int beepLength)
+        private int RandFancyBinPrint(List<Bin> bins, int beepLength, int numberOfBins)
         {
             Random rand = new Random();
-            int tempRand = rand.Next(38);
+            int tempRand = rand.Next(numberOfBins + 2);
             int i = 0;
             foreach (var bin in bins)
             {
