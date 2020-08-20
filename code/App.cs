@@ -37,16 +37,16 @@ namespace Roulette
             //           FancyBinPrint(bins);
             //           randomBin = 35;
 
-            Bet.Numbers(randomBin);
-            Bet.EvenOdd(randomBin);
-            Bet.RedBlack(chosenBin, randomBin);
-            Bet.LowHigh(randomBin);
-            Bet.Dozens(randomBin);
-            Bet.Columns(randomBin);
-            Bet.Street(randomBin);
-            Bet.SixNumbers(randomBin);
-            Bet.Split(randomBin);
-            Bet.Corner(randomBin);
+            Bet.Numbers(randomBin, numberOfBins);
+            Bet.EvenOdd(randomBin, numberOfBins);
+            Bet.RedBlack(chosenBin, randomBin, numberOfBins);
+            Bet.LowHigh(randomBin, numberOfBins);
+            Bet.Dozens(randomBin, numberOfBins);
+            Bet.Columns(randomBin, numberOfBins, numberOfColumns);
+            Bet.Street(randomBin, numberOfBins);
+            Bet.SixNumbers(randomBin, numberOfBins);
+            Bet.Split(randomBin, numberOfBins);
+            Bet.Corner(randomBin, numberOfBins);
         }
 
         private int RandomBallDrop(List<Bin> bins, int numberOfBins)

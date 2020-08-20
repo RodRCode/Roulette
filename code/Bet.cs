@@ -4,9 +4,9 @@ namespace Roulette
 {
     internal class Bet
     {
-        internal static void Numbers(int randomBin)
+        internal static void Numbers(int randomBin, int numberOfBins)
         {
-            if (randomBin == 37)
+            if (randomBin == numberOfBins+1)
             {
                 Console.WriteLine("You win if you bet on: 00");
             }
@@ -16,9 +16,9 @@ namespace Roulette
             }
         }
 
-        internal static void EvenOdd(int randomBin)
+        internal static void EvenOdd(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins+1)
             {
                 Console.WriteLine("You win nothing on the even/odd bet");
             }
@@ -35,9 +35,9 @@ namespace Roulette
             }
         }
 
-        internal static void RedBlack(Bin chosenBin, int randomBin)
+        internal static void RedBlack(Bin chosenBin, int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the Red/Black bet");
             }
@@ -47,9 +47,9 @@ namespace Roulette
             }
         }
 
-        internal static void LowHigh(int randomBin)
+        internal static void LowHigh(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the low/high bet");
             }
@@ -67,9 +67,9 @@ namespace Roulette
             }
         }
 
-        internal static void Dozens(int randomBin)
+        internal static void Dozens(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the dozens bet");
             }
@@ -90,15 +90,15 @@ namespace Roulette
             }
         }
 
-        internal static void Columns(int randomBin)
+        internal static void Columns(int randomBin, int numberOfBins, int numberOfColumns)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the columns bet");
             }
             else
             {
-                switch (randomBin % 3)
+                switch (randomBin % numberOfColumns)
                 {
                     case 0:
                         Console.WriteLine("You win if you bet on: column 1 (3/6/9/12/15/18/21/24/27/30/33/36)");
@@ -115,9 +115,9 @@ namespace Roulette
             }
         }
 
-        internal static void Street(int randomBin)
+        internal static void Street(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the streets bet");
             }
@@ -131,9 +131,9 @@ namespace Roulette
             }
         }
 
-        internal static void SixNumbers(int randomBin)
+        internal static void SixNumbers(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the six number bet");
             }
@@ -173,9 +173,9 @@ namespace Roulette
             }
         }
 
-        internal static void Split(int randomBin)
+        internal static void Split(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the split bet");
             }
@@ -215,9 +215,9 @@ namespace Roulette
             }
         }
 
-        internal static void Corner(int randomBin)
+        internal static void Corner(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == 37)
+            if (randomBin == 0 || randomBin == numberOfBins +1)
             {
                 Console.WriteLine("You win nothing on the corner bet");
             }
