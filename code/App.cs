@@ -43,8 +43,8 @@ namespace Roulette
             Bet.LowHigh(randomBin, numberOfBins);
             Bet.Dozens(randomBin, numberOfBins);
             Bet.Columns(randomBin, numberOfBins, numberOfColumns);
-            Bet.Street(randomBin, numberOfBins);
-            Bet.SixNumbers(randomBin, numberOfBins);
+            Bet.Street(randomBin, numberOfBins, numberOfColumns);
+            Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
             Bet.Split(randomBin, numberOfBins);
             Bet.Corner(randomBin, numberOfBins);
         }

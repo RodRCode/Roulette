@@ -115,7 +115,7 @@ namespace Roulette
             }
         }
 
-        internal static void Street(int randomBin, int numberOfBins)
+        internal static void Street(int randomBin, int numberOfBins, int numberOfColumns)
         {
             if (randomBin == 0 || randomBin == numberOfBins +1)
             {
@@ -123,15 +123,15 @@ namespace Roulette
             }
             else
             {
-                int tempInt = (randomBin - 1) / 3;
-                int temp1 = (tempInt * 3) + 1;
-                int temp2 = (tempInt * 3) + 2;
-                int temp3 = (tempInt * 3) + 3;
+                int tempInt = (randomBin - 1) / numberOfColumns;
+                int temp1 = (tempInt * numberOfColumns) + numberOfColumns -2;
+                int temp2 = (tempInt * numberOfColumns) + numberOfColumns -1;
+                int temp3 = (tempInt * numberOfColumns) + numberOfColumns;
                 Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}");
             }
         }
 
-        internal static void SixNumbers(int randomBin, int numberOfBins)
+        internal static void SixNumbers(int randomBin, int numberOfBins, int numberOfColumns)
         {
             if (randomBin == 0 || randomBin == numberOfBins +1)
             {
@@ -139,35 +139,35 @@ namespace Roulette
             }
             else
             {
-                int tempInt = (randomBin - 1) / 3;
+                int tempInt = (randomBin - 1) / numberOfColumns;
                 switch (tempInt)
                 {
                     case 0:
-                        int temp1 = (tempInt * 3) + 1;
-                        int temp2 = (tempInt * 3) + 2;
-                        int temp3 = (tempInt * 3) + 3;
-                        int temp4 = (tempInt * 3) + 4;
-                        int temp5 = (tempInt * 3) + 5;
-                        int temp6 = (tempInt * 3) + 6;
+                        int temp1 = (tempInt * numberOfColumns) + 1;
+                        int temp2 = (tempInt * numberOfColumns) + 2;
+                        int temp3 = (tempInt * numberOfColumns) + 3;
+                        int temp4 = (tempInt * numberOfColumns) + 4;
+                        int temp5 = (tempInt * numberOfColumns) + 5;
+                        int temp6 = (tempInt * numberOfColumns) + 6;
                         Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6}");
                         break;
                     case 11:
-                        temp1 = ((tempInt - 1) * 3) + 1;
-                        temp2 = ((tempInt - 1) * 3) + 2;
-                        temp3 = ((tempInt - 1) * 3) + 3;
-                        temp4 = (tempInt * 3) + 1;
-                        temp5 = (tempInt * 3) + 2;
-                        temp6 = (tempInt * 3) + 3;
+                        temp1 = ((tempInt - 1) * numberOfColumns) + 1;
+                        temp2 = ((tempInt - 1) * numberOfColumns) + 2;
+                        temp3 = ((tempInt - 1) * numberOfColumns) + 3;
+                        temp4 = (tempInt * numberOfColumns) + 1;
+                        temp5 = (tempInt * numberOfColumns) + 2;
+                        temp6 = (tempInt * numberOfColumns) + 3;
                         Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6}");
                         break;
                     default:
-                        temp1 = ((tempInt - 1) * 3) + 1;
-                        temp2 = ((tempInt - 1) * 3) + 2;
-                        temp3 = ((tempInt - 1) * 3) + 3;
-                        temp4 = (tempInt * 3) + 1;
-                        temp5 = (tempInt * 3) + 2;
-                        temp6 = (tempInt * 3) + 3;
-                        Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6} or {temp4}/{temp5}/{temp6}/{temp4 + 3}/{temp5 + 3}/{temp6 + 3}");
+                        temp1 = ((tempInt - 1) * numberOfColumns) + 1;
+                        temp2 = ((tempInt - 1) * numberOfColumns) + 2;
+                        temp3 = ((tempInt - 1) * numberOfColumns) + 3;
+                        temp4 = (tempInt * numberOfColumns) + 1;
+                        temp5 = (tempInt * numberOfColumns) + 2;
+                        temp6 = (tempInt * numberOfColumns) + 3;
+                        Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6} or {temp4}/{temp5}/{temp6}/{temp4 + numberOfColumns}/{temp5 + numberOfColumns}/{temp6 + numberOfColumns}");
                         break;
                 }
             }
