@@ -30,8 +30,10 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
-            randomBin = RandomBallDrop(bins, numberOfBins);
+            randomBin = RandomBallDrop(bins, numberOfBins, numberOfColumns);
             chosenBin = bins[randomBin];
+
+            Console.SetCursorPosition(0, (numberOfColumns *2) + 2);
             Console.WriteLine("The winning bets were:");
 
             //           FancyBinPrint(bins);
@@ -49,7 +51,7 @@ namespace Roulette
             Bet.Corner(randomBin, numberOfBins, numberOfColumns);
         }
 
-        private int RandomBallDrop(List<Bin> bins, int numberOfBins)
+        private int RandomBallDrop(List<Bin> bins, int numberOfBins, int numberOfColumns)
         {
             int beepLength = 50;
             bool finsihed = false;
@@ -58,15 +60,15 @@ namespace Roulette
             {
                 if (beepLength < 1000)
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins);
+                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
                     Console.Beep(300, beepLength);
                     beepLength = (int)(beepLength *1.1);
                 }
                 else
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins);
+                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
                     finsihed = true;
-                    Console.SetCursorPosition(0, 8);
+                    Console.SetCursorPosition(0, numberOfColumns +2);
                     Console.Beep();
                     return tempRand;
                 }
@@ -74,7 +76,7 @@ namespace Roulette
             return tempRand;
         }
 
-        private int RandFancyBinPrint(List<Bin> bins, int beepLength, int numberOfBins)
+        private int RandFancyBinPrint(List<Bin> bins, int beepLength, int numberOfBins, int numberOfColumns)
         {
             Random rand = new Random();
             int tempRand = rand.Next(numberOfBins + 2);
@@ -97,11 +99,11 @@ namespace Roulette
                 Console.ResetColor();
                 i++;
             }
-            Console.SetCursorPosition(0, 8);
+            Console.SetCursorPosition(0, numberOfColumns+2);
             return tempRand;
         }
 
-        private void FancyBinPrint(List<Bin> bins)
+        private void FancyBinPrint(List<Bin> bins, int numberOfColumns)
         {
             foreach (var bin in bins)
             {
@@ -115,7 +117,7 @@ namespace Roulette
                 Console.Write(bin.number);
                 Console.ResetColor();
             }
-            Console.SetCursorPosition(0, 8);
+            Console.SetCursorPosition(0, numberOfColumns +2);
             Console.WriteLine("Fancy Board Print");
         }
 

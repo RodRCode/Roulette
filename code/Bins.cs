@@ -86,7 +86,7 @@ namespace Roulette
                     bins[tempRand].color = "Red";
                     i++;
                 }
-                if (i == 18)
+                if (i == numberOfBins / 2)
                 {
                     finished = true;
                 }
