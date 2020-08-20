@@ -18,15 +18,12 @@ namespace Roulette
             this.x = x;
             this.y = y;
         }
-        public static List<Bin> GenerateBins()
+        public static List<Bin> GenerateBins(int numberOfBins, int numberOfColumns)
         {
             List<Bin> Bins = new List<Bin>();
 
             var zero = new Bin("Green", " 0", 1, 2);
             var doubleZero = new Bin("Green", "00", 1, 1);
-
-            int numberOfBins = 36;
-            int numberOfColumns = 3;
 
             Bins.Add(zero);
             for (int i = 1; i <= numberOfBins; i++)
@@ -48,10 +45,11 @@ namespace Roulette
 
             Bins.Add(doubleZero);
 
-            List<Bin> randomBins = RandomizeColors(Bins);
+            List<Bin> randomBins = RandomizeColors(Bins, numberOfBins);
 
             return randomBins;
         }
+
 
         private static int GetColumn(int i, int numberOfColumns)
         {
@@ -73,7 +71,7 @@ namespace Roulette
             return y;
         }
 
-        private static List<Bin> RandomizeColors(List<Bin> bins)
+        private static List<Bin> RandomizeColors(List<Bin> bins, int numberOfBins)
         {
             bool finished = false;
             int i = 0;
@@ -81,7 +79,7 @@ namespace Roulette
             Random rand = new Random();
             do
             {
-                tempRand = rand.Next(1, 36);
+                tempRand = rand.Next(1, numberOfBins);
 
                 if (bins[tempRand].color == "Black")
                 {

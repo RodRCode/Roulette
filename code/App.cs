@@ -23,8 +23,10 @@ namespace Roulette
             //8. 6 Numbers: Double rows 1/2/3/4/5/6 or 22/23/24/25/26/27
             //9. Split the edge of any two contiguoius numbers 1/2, 11/14, 35/36
             //10. Corners: 1/2/4/5 or 23/24/26/27
+            int numberOfBins = 36;
+            int numberOfColumns = 3;
 
-            List<Bin> bins = Bin.GenerateBins();
+            List<Bin> bins = Bin.GenerateBins(numberOfBins, numberOfColumns);
             int randomBin = 0;
             Bin chosenBin = new Bin();
 

@@ -26,11 +26,11 @@ namespace Roulette
             {
                 if ((randomBin % 2) == 0)
                 {
-                    Console.WriteLine("You won if you bet on: Even");
+                    Console.WriteLine("You win if you bet on: Even");
                 }
                 else
                 {
-                    Console.WriteLine("You won if you bet on: Odd");
+                    Console.WriteLine("You win if you bet on: Odd");
                 }
             }
         }
