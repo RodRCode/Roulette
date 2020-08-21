@@ -34,14 +34,15 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
+  //        randomBin = 35;
+  //        FancyBinPrint(bins,numberOfColumns);
             randomBin = RandomBallDrop(bins, numberOfBins, numberOfColumns);
+
             chosenBin = bins[randomBin];
 
             Console.SetCursorPosition(0, (numberOfColumns * 2) + 2);
             Console.WriteLine("The winning bets were:");
 
-            //           FancyBinPrint(bins);
-            //           randomBin = 35;
 
             Bet.Numbers(randomBin, numberOfBins);
             Bet.EvenOdd(randomBin, numberOfBins);
@@ -50,7 +51,7 @@ namespace Roulette
             Bet.Dozens(randomBin, numberOfBins);
             Bet.Columns(randomBin, numberOfBins, bins);
             Bet.Street(randomBin, numberOfBins, bins);
-            Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
+            Bet.SixNumbers(randomBin, numberOfBins, bins, numberOfColumns);
             Bet.Split(randomBin, numberOfBins, numberOfColumns);
             Bet.Corner(randomBin, numberOfBins, numberOfColumns);
         }

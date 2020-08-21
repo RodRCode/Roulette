@@ -120,60 +120,71 @@ namespace Roulette
                 int street = bins[randomBin].x;
 
                 Console.Write($"You win if you bet on: street {street - 1} (");
-                foreach (var bin in bins)
-                {
-                    if (bin.number == "00" || bin.number == " 0")
-                    {
-
-                    }
-                    else
-                    {
-                        if (bin.x == street)
-                            Console.Write(bin.number + " ");
-                    }
-                }
+                StreetPrint(bins, street);
                 Console.WriteLine(")");
             }
         }
 
-        internal static void SixNumbers(int randomBin, int numberOfBins, int numberOfColumns)
+        private static void StreetPrint(List<Bin> bins, int street)
         {
+            foreach (var bin in bins)
+            {
+                if (bin.number == "00" || bin.number == " 0")
+                {
+
+                }
+                else
+                {
+                    if (bin.x == street)
+                        Console.Write(bin.number + " ");
+                }
+            }
+        }
+
+        internal static void SixNumbers(int randomBin, int numberOfBins, List<Bin> bins, int numberOfColumns)
+        {
+            int maxNumberOfStreets = numberOfBins / numberOfColumns;
             if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the six number bet");
             }
             else
             {
-                int tempInt = (randomBin - 1) / numberOfColumns;
-                switch (tempInt)
+                int street = bins[randomBin].x;
+
+                if (street == 2)
                 {
-                    case 0:
-                        int temp1 = (tempInt * numberOfColumns) + 1;
-                        int temp2 = (tempInt * numberOfColumns) + 2;
-                        int temp3 = (tempInt * numberOfColumns) + 3;
-                        int temp4 = (tempInt * numberOfColumns) + 4;
-                        int temp5 = (tempInt * numberOfColumns) + 5;
-                        int temp6 = (tempInt * numberOfColumns) + 6;
-                        Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6}");
-                        break;
-                    case 11:
-                        temp1 = ((tempInt - 1) * numberOfColumns) + 1;
-                        temp2 = ((tempInt - 1) * numberOfColumns) + 2;
-                        temp3 = ((tempInt - 1) * numberOfColumns) + 3;
-                        temp4 = (tempInt * numberOfColumns) + 1;
-                        temp5 = (tempInt * numberOfColumns) + 2;
-                        temp6 = (tempInt * numberOfColumns) + 3;
-                        Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6}");
-                        break;
-                    default:
-                        temp1 = ((tempInt - 1) * numberOfColumns) + 1;
-                        temp2 = ((tempInt - 1) * numberOfColumns) + 2;
-                        temp3 = ((tempInt - 1) * numberOfColumns) + 3;
-                        temp4 = (tempInt * numberOfColumns) + 1;
-                        temp5 = (tempInt * numberOfColumns) + 2;
-                        temp6 = (tempInt * numberOfColumns) + 3;
-                        Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}/{temp4}/{temp5}/{temp6} or {temp4}/{temp5}/{temp6}/{temp4 + numberOfColumns}/{temp5 + numberOfColumns}/{temp6 + numberOfColumns}");
-                        break;
+                    Console.Write($"You win if you bet on: streets {street - 1 } & {street} (");
+                    StreetPrint(bins, street);
+                    Console.Write("/ ");
+                    street++;
+                    StreetPrint(bins, street);
+                    Console.WriteLine($")");
+                }
+                else if (street == maxNumberOfStreets + 1)
+                {
+                    street--;
+                    Console.Write($"You win if you bet on: streets {street - 1 } & {street} (");
+                    StreetPrint(bins, street);
+                    Console.Write("/ ");
+                    street++;
+                    StreetPrint(bins, street);
+                    Console.WriteLine($")");
+                }
+                else
+                {
+                    street--;
+                    Console.Write($"You win if you bet on: streets {street - 1} & {street} (");
+                    StreetPrint(bins, street);
+                    Console.Write("/ ");
+                    street++;
+                    StreetPrint(bins, street);
+                    Console.Write($") or streets {street - 1} & {street} (");
+                    StreetPrint(bins, street);
+                    Console.Write("/ ");
+                    street++;
+                    StreetPrint(bins, street);
+                    Console.WriteLine(")");
                 }
             }
         }
