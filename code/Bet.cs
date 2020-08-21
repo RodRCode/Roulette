@@ -78,7 +78,7 @@ namespace Roulette
             {
                 int dozens = (randomBin / 12);
 
-                Console.WriteLine($"You win if you bet on: {dozens*12+1}-{(dozens+1)*12}");
+                Console.WriteLine($"You win if you bet on: {dozens * 12 + 1}-{(dozens + 1) * 12}");
             }
         }
 
@@ -108,7 +108,7 @@ namespace Roulette
             }
         }
 
-        internal static void Street(int randomBin, int numberOfBins, int numberOfColumns)
+        internal static void Street(int randomBin, int numberOfBins, List<Bin> bins)
         {
             if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
@@ -116,11 +116,23 @@ namespace Roulette
             }
             else
             {
-                int tempInt = (randomBin - 1) / numberOfColumns;
-                int temp1 = (tempInt * numberOfColumns) + numberOfColumns - 2;
-                int temp2 = (tempInt * numberOfColumns) + numberOfColumns - 1;
-                int temp3 = (tempInt * numberOfColumns) + numberOfColumns;
-                Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}");
+
+                int street = bins[randomBin].x;
+
+                Console.Write($"You win if you bet on: street {street - 1} (");
+                foreach (var bin in bins)
+                {
+                    if (bin.number == "00" || bin.number == " 0")
+                    {
+
+                    }
+                    else
+                    {
+                        if (bin.x == street)
+                            Console.Write(bin.number + " ");
+                    }
+                }
+                Console.WriteLine(")");
             }
         }
 

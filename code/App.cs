@@ -49,20 +49,10 @@ namespace Roulette
             Bet.LowHigh(randomBin, numberOfBins);
             Bet.Dozens(randomBin, numberOfBins);
             Bet.Columns(randomBin, numberOfBins, bins);
-            Bet.Street(randomBin, numberOfBins, numberOfColumns);
+            Bet.Street(randomBin, numberOfBins, bins);
             Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
             Bet.Split(randomBin, numberOfBins, numberOfColumns);
             Bet.Corner(randomBin, numberOfBins, numberOfColumns);
-
-            int street = bins[randomBin].x;
-            int column = bins[randomBin].y;
-
-            Console.WriteLine("Here is the test of a street");
-            foreach (var bin in bins)
-            {
-                if (bin.x == street)
-                    Console.Write(bin.number + " ");
-            }
         }
 
         private static void IntroAndOptions(ref int numberOfBins, ref int numberOfColumns)
