@@ -7,9 +7,9 @@ namespace Roulette
     public class Bin
     {
         public string color;
-        public readonly string number;
-        public readonly int x;
-        public readonly int y;
+        public string number;
+        public int x;
+        public int y;
 
         public Bin(string color = "Purple", string number = "Triple Zero", int x = 0, int y = 0)
         {

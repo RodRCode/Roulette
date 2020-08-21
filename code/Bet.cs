@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Roulette
 {
@@ -6,7 +7,7 @@ namespace Roulette
     {
         internal static void Numbers(int randomBin, int numberOfBins)
         {
-            if (randomBin == numberOfBins+1)
+            if (randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win if you bet on: 00");
             }
@@ -18,7 +19,7 @@ namespace Roulette
 
         internal static void EvenOdd(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == numberOfBins+1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the even/odd bet");
             }
@@ -37,7 +38,7 @@ namespace Roulette
 
         internal static void RedBlack(Bin chosenBin, int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the Red/Black bet");
             }
@@ -49,13 +50,13 @@ namespace Roulette
 
         internal static void LowHigh(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the low/high bet");
             }
             else
             {
-                if (randomBin < 19)
+                if (randomBin < (numberOfBins / 2))
                 {
                     Console.WriteLine("You win if you bet on: Low");
                 }
@@ -69,63 +70,55 @@ namespace Roulette
 
         internal static void Dozens(int randomBin, int numberOfBins)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the dozens bet");
             }
             else
             {
-                if (randomBin <= 12)
-                {
-                    Console.WriteLine("You win if you bet on: 1-12");
-                }
-                else if (randomBin >= 25)
-                {
-                    Console.WriteLine("You win if you bet on: 25-36");
-                }
-                else
-                {
-                    Console.WriteLine("You win if you bet on: 13-24");
-                }
+                int dozens = (randomBin / 12);
+
+                Console.WriteLine($"You win if you bet on: {dozens*12+1}-{(dozens+1)*12}");
             }
         }
 
-        internal static void Columns(int randomBin, int numberOfBins, int numberOfColumns)
+        internal static void Columns(int randomBin, int numberOfBins, List<Bin> bins)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the columns bet");
             }
             else
             {
-                switch (randomBin % numberOfColumns)
+                int column = bins[randomBin].y;
+                Console.Write($"You win if you bet on: column {column} (");
+                foreach (var bin in bins)
                 {
-                    case 0:
-                        Console.WriteLine("You win if you bet on: column 1 (3/6/9/12/15/18/21/24/27/30/33/36)");
-                        break;
-                    case 1:
-                        Console.WriteLine("You win if you bet on: column 3 (1/4/7/10/13/16/19/22/25/28/31/34)");
-                        break;
-                    case 2:
-                        Console.WriteLine("You win if you bet on: column 2 (2/5/8/11/14/17/20/23/26/29/32/35)");
-                        break;
-                    default:
-                        break;
+                    if (bin.number == "00" || bin.number == " 0")
+                    {
+
+                    }
+                    else
+                    {
+                        if (bin.y == column)
+                            Console.Write(bin.number + " ");
+                    }
                 }
+                Console.WriteLine(")");
             }
         }
 
         internal static void Street(int randomBin, int numberOfBins, int numberOfColumns)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the streets bet");
             }
             else
             {
                 int tempInt = (randomBin - 1) / numberOfColumns;
-                int temp1 = (tempInt * numberOfColumns) + numberOfColumns -2;
-                int temp2 = (tempInt * numberOfColumns) + numberOfColumns -1;
+                int temp1 = (tempInt * numberOfColumns) + numberOfColumns - 2;
+                int temp2 = (tempInt * numberOfColumns) + numberOfColumns - 1;
                 int temp3 = (tempInt * numberOfColumns) + numberOfColumns;
                 Console.WriteLine($"You win if you bet on: {temp1}/{temp2}/{temp3}");
             }
@@ -133,7 +126,7 @@ namespace Roulette
 
         internal static void SixNumbers(int randomBin, int numberOfBins, int numberOfColumns)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the six number bet");
             }
@@ -217,7 +210,7 @@ namespace Roulette
 
         internal static void Corner(int randomBin, int numberOfBins, int numberOfColumns)
         {
-            if (randomBin == 0 || randomBin == numberOfBins +1)
+            if (randomBin == 0 || randomBin == numberOfBins + 1)
             {
                 Console.WriteLine("You win nothing on the corner bet");
             }

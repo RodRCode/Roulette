@@ -48,11 +48,21 @@ namespace Roulette
             Bet.RedBlack(chosenBin, randomBin, numberOfBins);
             Bet.LowHigh(randomBin, numberOfBins);
             Bet.Dozens(randomBin, numberOfBins);
-            Bet.Columns(randomBin, numberOfBins, numberOfColumns);
+            Bet.Columns(randomBin, numberOfBins, bins);
             Bet.Street(randomBin, numberOfBins, numberOfColumns);
             Bet.SixNumbers(randomBin, numberOfBins, numberOfColumns);
             Bet.Split(randomBin, numberOfBins, numberOfColumns);
             Bet.Corner(randomBin, numberOfBins, numberOfColumns);
+
+            int street = bins[randomBin].x;
+            int column = bins[randomBin].y;
+
+            Console.WriteLine("Here is the test of a street");
+            foreach (var bin in bins)
+            {
+                if (bin.x == street)
+                    Console.Write(bin.number + " ");
+            }
         }
 
         private static void IntroAndOptions(ref int numberOfBins, ref int numberOfColumns)
@@ -91,13 +101,13 @@ namespace Roulette
                 {
                     tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
                     Console.Beep(300, beepLength);
-                    beepLength = (int)(beepLength *1.1);
+                    beepLength = (int)(beepLength * 1.1);
                 }
                 else
                 {
                     tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
                     finsihed = true;
-                    Console.SetCursorPosition(0, numberOfColumns +2);
+                    Console.SetCursorPosition(0, numberOfColumns + 2);
                     Console.Beep();
                     return tempRand;
                 }
@@ -128,7 +138,7 @@ namespace Roulette
                 Console.ResetColor();
                 i++;
             }
-            Console.SetCursorPosition(0, numberOfColumns+2);
+            Console.SetCursorPosition(0, numberOfColumns + 2);
             return tempRand;
         }
 
@@ -146,7 +156,7 @@ namespace Roulette
                 Console.Write(bin.number);
                 Console.ResetColor();
             }
-            Console.SetCursorPosition(0, numberOfColumns +2);
+            Console.SetCursorPosition(0, numberOfColumns + 2);
             Console.WriteLine("Fancy Board Print");
         }
 
