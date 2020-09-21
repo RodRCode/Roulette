@@ -160,7 +160,14 @@ namespace Roulette
                 {
                     PrintLastBin(lastBin);
                     PrintRandBin(randBin);
-                    Console.Beep(300, beepLength);
+                    try
+                    {
+                        Console.Beep(300, beepLength);
+                    }
+                    catch (Exception ex)
+                    {
+                        Thread.Sleep(beepLength);
+                    }
                     beepLength = (int)(beepLength * 1.1);
                     Console.SetCursorPosition(0, numberOfColumns + 2);
                 }
@@ -170,7 +177,14 @@ namespace Roulette
                     PrintRandBin(randBin);
                     finsihed = true;
                     Console.SetCursorPosition(0, numberOfColumns + 2);
-                    Console.Beep();
+                    try
+                    {
+                        Console.Beep();
+                    }
+                    catch (Exception ex)
+                    {
+                    }
+
                     return tempRand;
                 }
             } while (!finsihed);
