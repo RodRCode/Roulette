@@ -69,18 +69,15 @@ namespace Roulette
 
                 int width = Console.WindowWidth;
                 int height = Console.WindowHeight;
-                Console.WriteLine($"\nCurrent window width = {width}, and height = {height}");
 
                 int maxColumns = height / 2 - 1;
                 int maxHorizontalBins = (width - 8) / 4;
                 int maxBins = maxHorizontalBins * maxColumns;
 
-                Console.WriteLine($"You can only enter in {maxBins} bins and {maxColumns} columns");
-
                 Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine("But, that's OK, you do you.");
+                Console.WriteLine("\nBut, that's OK, you do you.");
                 Console.ResetColor();
 
                 bool goodNumber = false;
@@ -144,24 +141,65 @@ namespace Roulette
             int beepLength = 50;
             bool finsihed = false;
             int tempRand = 0;
+            int lastRand = 0;
+            var lastBin = bins[0];
+            var randBin = bins[0];
+
+            Console.CursorVisible = false;
+            FancyBinPrint(bins, numberOfColumns);
             do
             {
+                Random rand = new Random();
+                lastRand = tempRand;
+                lastBin = bins[lastRand];
+
+                tempRand = rand.Next(numberOfBins + 2);
+                randBin = bins[tempRand];
+
                 if (beepLength < 1000)
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
+                    PrintLastBin(lastBin);
+                    PrintRandBin(randBin);
                     Console.Beep(300, beepLength);
                     beepLength = (int)(beepLength * 1.1);
+                    Console.SetCursorPosition(0, numberOfColumns + 2);
                 }
                 else
                 {
-                    tempRand = RandFancyBinPrint(bins, beepLength, numberOfBins, numberOfColumns);
+                    PrintLastBin(lastBin);
+                    PrintRandBin(randBin);
                     finsihed = true;
                     Console.SetCursorPosition(0, numberOfColumns + 2);
                     Console.Beep();
                     return tempRand;
                 }
             } while (!finsihed);
+            Console.CursorVisible = true;
             return tempRand;
+        }
+
+        private void PrintRandBin(Bin bin)
+        {
+
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+
+            Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+            Console.Write(bin.number);
+            Console.ResetColor();
+        }
+
+        private void PrintLastBin(Bin bin)
+        {
+            if (bin.color == "Black")
+                Console.BackgroundColor = ConsoleColor.Black;
+            if (bin.color == "Red")
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+            if (bin.color == "Green")
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+            Console.Write(bin.number);
+            Console.ResetColor();
         }
 
         private int RandFancyBinPrint(List<Bin> bins, int beepLength, int numberOfBins, int numberOfColumns)
@@ -206,7 +244,6 @@ namespace Roulette
                 Console.ResetColor();
             }
             Console.SetCursorPosition(0, numberOfColumns + 2);
-            Console.WriteLine("Fancy Board Print");
         }
 
         private static void PrintBins(List<Bin> bins)
