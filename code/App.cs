@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Threading;
 
 namespace Roulette
@@ -21,7 +22,7 @@ namespace Roulette
             //6. Columns: first second or third
             //7. Streets: rows 1/2/3 or 22/23/24
             //8. 6 Numbers: Double rows 1/2/3/4/5/6 or 22/23/24/25/26/27
-            //9. Split the edge of any two contiguoius numbers 1/2, 11/14, 35/36
+            //9. Split the edge of any two contiguous numbers 1/2, 11/14, 35/36
             //10. Corners: 1/2/4/5 or 23/24/26/27
             int numberOfBins = 36;
             int numberOfColumns = 3;
@@ -34,8 +35,8 @@ namespace Roulette
             int randomBin = 0;
             Bin chosenBin = new Bin();
 
-  //        randomBin = 35;
-  //        FancyBinPrint(bins,numberOfColumns);
+            //        randomBin = 35;
+            //        FancyBinPrint(bins,numberOfColumns);
             randomBin = RandomBallDrop(bins, numberOfBins, numberOfColumns);
 
             chosenBin = bins[randomBin];
@@ -66,19 +67,76 @@ namespace Roulette
             {
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("\n\nYou are going to get some WACKY results because the bets have not been fully set up for this (yet)");
-                Console.WriteLine("If you put in more than 420 bins and/or more than 15 columns you are going to probably break things");
+                int width = Console.WindowWidth;
+                int height = Console.WindowHeight;
+                Console.WriteLine($"\nCurrent window width = {width}, and height = {height}");
+
+                int maxColumns = height / 2 - 1;
+                int maxHorizontalBins = (width - 8) / 4;
+                int maxBins = maxHorizontalBins * maxColumns;
+
+                Console.WriteLine($"You can only enter in {maxBins} bins and {maxColumns} columns");
+
+                Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.WriteLine("But, that's ok, you do you.");
+                Console.WriteLine("But, that's OK, you do you.");
                 Console.ResetColor();
+
+                bool goodNumber = false;
+                do
+                {
+                    GetNumbersAndColumns(out numberOfBins, out numberOfColumns, out answerString, maxColumns, maxBins);
+                    if (numberOfBins > (maxHorizontalBins * numberOfColumns))
+                    {
+                        Console.WriteLine("That arrangement exceeds the bounds of the screen.  Please try again.");
+                        Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
+                    }
+                    else
+                    {
+                        goodNumber = true;
+                    }
+                } while (!goodNumber);
+            }
+        }
+
+        private static void GetNumbersAndColumns(out int numberOfBins, out int numberOfColumns, out string answerString, int maxColumns, int maxBins)
+        {
+            bool goodNumber = false;
+            do
+            {
                 Console.Write("\n\nEnter how many numbers you want on the Roulette Table then hit enter: ");
                 answerString = Console.ReadLine();
                 numberOfBins = int.Parse(answerString);
+                if (numberOfBins > maxBins)
+                {
+                    Console.WriteLine("That is too many numbers.");
+                    Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
+                    Console.WriteLine("Please try again.");
+                }
+                else
+                {
+                    goodNumber = true;
+                }
+            } while (!goodNumber);
+
+            goodNumber = false;
+            do
+            {
                 Console.Write("\nEnter how many columns you want: ");
                 answerString = Console.ReadLine();
                 numberOfColumns = int.Parse(answerString);
-            }
+                if (numberOfColumns > maxColumns)
+                {
+                    Console.WriteLine("That is too many columns.");
+                    Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
+                    Console.WriteLine("Please try again.");
+                }
+                else
+                {
+                    goodNumber = true;
+                }
+            } while (!goodNumber);
         }
 
         private int RandomBallDrop(List<Bin> bins, int numberOfBins, int numberOfColumns)
