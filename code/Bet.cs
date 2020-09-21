@@ -204,17 +204,15 @@ namespace Roulette
                 string e = randomBin + "/" + (randomBin + numberOfColumns);
                 string w = (randomBin - numberOfColumns) + "/" + randomBin + " ";
 
-                switch (street)
+                if (street == 0)
                 {
-                    case 0:
-                        w = "";
-                        break;
-                    case 11:
-                        e = "";
-                        break;
-                    default:
-                        break;
+                    w = "";
                 }
+                if (street == numberOfColumns - 1)
+                {
+                    e = "";
+                }
+
                 switch (column)
                 {
                     case 0:
@@ -225,6 +223,16 @@ namespace Roulette
                         break;
                     default:
                         break;
+                }
+
+                if ((randomBin + numberOfColumns) > numberOfBins)
+                {
+                    e = "";
+                }
+
+                if ((randomBin + 1) > numberOfBins)
+                {
+                    n = "";
                 }
 
                 Console.WriteLine($"You win if you bet on: {w}{n}{s}{e}");
@@ -239,22 +247,34 @@ namespace Roulette
             }
             else
             {
+                int ?boundry1 = randomBin + 1;
+                int ?boundry2 = boundry1 + numberOfColumns;
+                int ?boundry3 = randomBin + numberOfColumns;
+                int ?boundry4 = randomBin - 1 + numberOfColumns;
+                if (boundry1 > numberOfBins)
+                {
+                    boundry1 = null;
+                }
+                if (boundry2 > numberOfBins)
+                {
+                    boundry2 = null;
+                }
+                if (boundry3 > numberOfBins)
+                {
+                    boundry3 = null;
+                }
                 int street = (randomBin - 1) / numberOfColumns;
                 int column = (randomBin % numberOfColumns);
-                string nw = (randomBin + 1 - numberOfColumns) + "/" + (randomBin + 1) + "/" + (randomBin - numberOfColumns) + "/" + randomBin + " ";
-                string ne = (randomBin + 1) + "/" + (randomBin + 1 + numberOfColumns) + "/" + randomBin + "/" + (randomBin + numberOfColumns) + " ";
+                string nw = (randomBin + 1 - numberOfColumns) + "/" + boundry1 + "/" + (randomBin - numberOfColumns) + "/" + randomBin + " ";
+                string ne = boundry1 + "/" + boundry2 + "/" + randomBin + "/" + boundry3 + " ";
                 string sw = (randomBin - numberOfColumns) + "/" + randomBin + "/" + (randomBin - numberOfColumns - 1) + "/" + (randomBin - 1) + " ";
-                string se = randomBin + "/" + (randomBin + numberOfColumns) + "/" + (randomBin - 1) + "/" + (randomBin - 1 + numberOfColumns) + " ";
+                string se = randomBin + "/" + boundry3 + "/" + (randomBin - 1) + "/" + boundry4 + " ";
 
                 switch (street)
                 {
                     case 0:
                         nw = "";
                         sw = "";
-                        break;
-                    case 11:
-                        ne = "";
-                        se = "";
                         break;
                     default:
                         break;
@@ -272,6 +292,8 @@ namespace Roulette
                     default:
                         break;
                 }
+
+
 
                 Console.WriteLine($"You win if you bet on: {nw}{ne}{sw}{se}");
             }
