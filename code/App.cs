@@ -7,6 +7,7 @@ namespace Roulette
 {
     internal class App
     {
+        static int spaceBetweenNumbers = 3;
         public App()
         {
         }
@@ -37,6 +38,11 @@ namespace Roulette
 
             //        randomBin = 35;
             //        FancyBinPrint(bins,numberOfColumns);
+
+            int width = Console.WindowWidth;
+
+            SetSpaceBetweenNumbers(width, numberOfColumns);
+
             randomBin = RandomBallDrop(bins, numberOfBins, numberOfColumns);
 
             chosenBin = bins[randomBin];
@@ -69,12 +75,16 @@ namespace Roulette
 
                 int width = Console.WindowWidth;
                 int height = Console.WindowHeight;
+                int maxColumns = (height / 2) - 1;
 
-                int maxColumns = height / 2 - 1;
-                int maxHorizontalBins = (width - 8) / 4;
+                SetSpaceBetweenNumbers(width, maxColumns);
+
+                int maxHorizontalBins = (width - 8) / spaceBetweenNumbers;
                 int maxBins = maxHorizontalBins * maxColumns;
 
                 Console.WriteLine($"\n\nBased on the current window size, you can have up to {maxBins} numbers on the board and {maxColumns} columns");
+
+
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("\nBut, that's OK, you do you.");
@@ -95,6 +105,22 @@ namespace Roulette
                     }
                 } while (!goodNumber);
             }
+        }
+
+        private static void SetSpaceBetweenNumbers(int width, int maxColumns)
+        {
+            if ((((width - 8) / 2) * maxColumns) < 10)
+                spaceBetweenNumbers = 2;
+            if ((((width - 8) / 3) * maxColumns) > 9)
+                spaceBetweenNumbers = 3;
+            if ((((width - 8) / 4) * maxColumns) > 99)
+                spaceBetweenNumbers = 4;
+            if ((((width - 8) / 4) * maxColumns) > 999)
+                spaceBetweenNumbers = 5;
+            if ((((width - 8) / 6) * maxColumns) > 9999)
+                spaceBetweenNumbers = 6;
+            if ((((width - 8) / 7) * maxColumns) > 99999)
+                spaceBetweenNumbers = 7;
         }
 
         private static void GetNumbersAndColumns(out int numberOfBins, out int numberOfColumns, out string answerString, int maxColumns, int maxBins)
@@ -184,11 +210,12 @@ namespace Roulette
                     catch (Exception ex)
                     {
                     }
-
+                    Thread.Sleep(500);
                     return tempRand;
                 }
             } while (!finsihed);
             Console.CursorVisible = true;
+            Thread.Sleep(500);
             return tempRand;
         }
 
@@ -198,7 +225,7 @@ namespace Roulette
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.Cyan;
 
-            Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+            Console.SetCursorPosition(bin.x * spaceBetweenNumbers - 1, bin.y * 2);
             Console.Write(bin.number);
             Console.ResetColor();
         }
@@ -211,7 +238,7 @@ namespace Roulette
                 Console.BackgroundColor = ConsoleColor.DarkRed;
             if (bin.color == "Green")
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+            Console.SetCursorPosition(bin.x * spaceBetweenNumbers - 1, bin.y * 2);
             Console.Write(bin.number);
             Console.ResetColor();
         }
@@ -234,7 +261,7 @@ namespace Roulette
                     Console.BackgroundColor = ConsoleColor.Blue;
                     Console.ForegroundColor = ConsoleColor.Cyan;
                 }
-                Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+                Console.SetCursorPosition(bin.x * spaceBetweenNumbers -1 , bin.y * 2);
                 Console.Write(bin.number);
                 Console.ResetColor();
                 i++;
@@ -253,7 +280,7 @@ namespace Roulette
                     Console.BackgroundColor = ConsoleColor.DarkRed;
                 if (bin.color == "Green")
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
-                Console.SetCursorPosition(bin.x * 4, bin.y * 2);
+                Console.SetCursorPosition(bin.x * spaceBetweenNumbers - 1, bin.y * 2);
                 Console.Write(bin.number);
                 Console.ResetColor();
             }
